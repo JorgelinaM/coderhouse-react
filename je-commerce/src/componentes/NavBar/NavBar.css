@@ -1,0 +1,10 @@
+.c-navbar__list {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+}
+
+.c-navbar__list li {
+    margin: 0 1rem;
+}
