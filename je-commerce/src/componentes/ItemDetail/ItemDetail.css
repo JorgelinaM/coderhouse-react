@@ -1,0 +1,16 @@
+.c-item-detail{
+    display: flex;
+}
+
+.c-item-detail img {
+    max-width: 300px;
+}
+
+.c-item-detail__info {
+    padding: 0 1em;
+}
+
+.c-item-detail__cart-inputs {
+    display: flex;
+    align-items: flex-start;
+}

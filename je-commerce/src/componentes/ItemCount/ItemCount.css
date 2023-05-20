@@ -1,0 +1,14 @@
+.c-item-count button {
+    background-color: #332343;
+    color: #ffffff;
+    border: none;
+    padding: 1em;
+}
+
+.c-item-count input {
+    padding: calc(1em - 2px);
+}
+
+.c-item-count span {
+    font-size: 0.825rem;
+}

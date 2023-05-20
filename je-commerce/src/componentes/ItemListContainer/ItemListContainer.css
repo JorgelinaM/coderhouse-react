@@ -1,3 +1,8 @@
-.c-item-list {
-    color: blue;
+.c-item-list-container h2 {
+    text-align: center;
+}
+
+.c-item-list-container h3 {
+    text-align: center;
+    text-transform: capitalize;
 }

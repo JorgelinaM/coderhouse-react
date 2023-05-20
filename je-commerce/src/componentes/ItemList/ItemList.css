@@ -1,0 +1,4 @@
+.c-item-list {
+    display: flex;
+    flex-wrap: wrap;
+}

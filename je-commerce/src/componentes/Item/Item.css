@@ -1,0 +1,10 @@
+.c-item {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ccc;
+    max-width: 200px;
+    margin: 1em;
+}
+.c-item img {
+    max-width: 200px;
+}
