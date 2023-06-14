@@ -1,24 +1,25 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { getDocs, collection, query, where } from "firebase/firestore";
 
-import { getBooks, getBooksByCategory } from '../../asyncmock';
 import './ItemListContainer.css';
 import ItemList from '../ItemList/ItemList';
+import { db } from "../../services/config";
 
 const ItemListContainer = (props) => {
   const [books, setBooks] = useState([]);
   const { idCategory } = useParams();
 
   useEffect(() => {
-    if (idCategory) {
-      getBooksByCategory(idCategory)
-        .then(books => setBooks(books))
-        .catch(error => console.log(error))
-    } else { 
-      getBooks()
-      .then(books => setBooks(books))
-      .catch(error => console.log(error))
-    }
+    const dbBooks = query(collection(db, 'items'), idCategory && where('categoryId', '==', idCategory));
+
+    getDocs(dbBooks)
+    .then(res => setBooks(res.docs.map(doc => (
+      {
+        id: doc.id,
+        ...doc.data()
+      }
+    ))));
   }, [idCategory])
 
   return (

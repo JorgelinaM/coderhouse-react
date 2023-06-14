@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-
-import { getBook } from '../../asyncmock';
+import { db } from '../../services/config';
+import { getDoc, doc } from 'firebase/firestore';
 
 import './ItemDetailContainer.css';
 import ItemDetail from '../ItemDetail/ItemDetail';
@@ -11,9 +11,19 @@ const ItemDetailContainer = () => {
     const { itemId } = useParams();
 
     useEffect(() => {
-        getBook(itemId)
-            .then(bookData => setBook(bookData))
-            .catch(error => console.log(error))
+      const newDoc = doc(db, "items", itemId);
+      
+      getDoc(newDoc)
+        .then(res => {
+          const data = res.data();
+          const currentBook = {
+            id: res.id,
+            ...data
+          };
+
+          setBook(currentBook)
+        })
+        .catch(error => console.log(error))
     }, [itemId])
 
   return (

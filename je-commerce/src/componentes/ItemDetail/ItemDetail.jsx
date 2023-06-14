@@ -1,13 +1,14 @@
 import { useState } from 'react';
-import { useParams } from 'react-router-dom';
-
+import { useContext } from 'react';
 
 import './ItemDetail.css';
 import ItemCount from '../ItemCount/ItemCount';
+import { CartContext } from '../../context/CartContext';
 
 const ItemDetail = ({ book }) => {
     const { image, title, description, price, stock } = book;
     const [counter, setCounter] = useState(0);
+    const { addItem } = useContext(CartContext);
 
     const handleCounter = (value) => {
         let parsedValue = parseInt(value);
@@ -26,7 +27,7 @@ const ItemDetail = ({ book }) => {
                 <span>${price}</span>
                 <div className='c-item-detail__cart-inputs'>
                     <ItemCount counter={counter} handleCounter={handleCounter} stock={stock} />
-                    <button className='c-button'>Add to cart</button>
+                    <button className='c-button' onClick={() => addItem(book, counter)}>Add to cart</button>
                 </div>
             </div>
         </div>
